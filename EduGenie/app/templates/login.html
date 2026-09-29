@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EduGenie Login</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body class="login-page">
+
+    <div class="login-card">
+
+        <div class="brand centered">
+
+            <span class="brand-icon">
+                ✦
+            </span>
+
+            <div>
+                <b>EduGenie</b>
+                <small>
+                    AI Learning Assistant
+                </small>
+            </div>
+
+        </div>
+
+        <h1>
+            Welcome back
+        </h1>
+
+        <p>
+            Create a local account or sign in
+            to save your study history.
+        </p>
+
+        <form id="authForm">
+
+            <input
+                name="username"
+                placeholder="Username"
+                required
+                minlength="3"
+                autocomplete="username"
+            >
+
+            <input
+                name="password"
+                type="password"
+                placeholder="Password (6+ characters)"
+                required
+                minlength="6"
+                autocomplete="current-password"
+            >
+
+            <button
+                id="authBtn"
+                type="submit"
+            >
+                Login
+            </button>
+
+        </form>
+
+        <button
+            id="toggleAuth"
+            class="link-btn"
+            type="button"
+        >
+            Need an account? Register
+        </button>
+
+        <div
+            id="authError"
+            class="error"
+        ></div>
+
+    </div>
+
+    <script src="/static/auth.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        EduGenie — AI Learning Assistant
+    </title>
+
+    <link
+        rel="icon"
+        href="/static/favicon.svg"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <span class="brand-icon">
+                ✦
+            </span>
+
+            <div>
+
+                <b>EduGenie</b>
+
+                <small>
+                    AI Learning Assistant
+                </small>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <button
+                class="nav-btn active"
+                data-tab="chat"
+            >
+                💬 Ask EduGenie
+            </button>
+
+            <button
+                class="nav-btn"
+                data-tab="explain"
+            >
+                💡 Explain a Topic
+            </button>
+
+            <button
+                class="nav-btn"
+                data-tab="quiz"
+            >
+                📝 Quiz Generator
+            </button>
+
+            <button
+                class="nav-btn"
+                data-tab="summary"
+            >
+                📚 Smart Summary
+            </button>
+
+            <button
+                class="nav-btn"
+                data-tab="path"
+            >
+                🗺️ Learning Path
+            </button>
+
+            <button
+                class="nav-btn"
+                data-tab="history"
+            >
+                🕘 Study History
+            </button>
+
+        </nav>
+
+        <div class="side-bottom">
+
+            {% if user %}
+
+            <div class="user-pill">
+
+                👤 {{ user.username }}
+
+            </div>
+
+            <button
+                id="logoutBtn"
+                class="ghost-btn"
+            >
+                Log out
+            </button>
+
+            {% else %}
+
+            <a
+                href="/login"
+                class="ghost-btn"
+            >
+                Login / Register
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="eyebrow">
+                    YOUR PERSONAL STUDY COMPANION
+                </span>
+
+                <h1 id="pageTitle">
+                    Ask EduGenie
+                </h1>
+
+            </div>
+
+            <div class="status">
+                ● Gemini AI
+            </div>
+
+        </header>
+
+
+        <div
+            id="notice"
+            class="notice hidden"
+        ></div>
+
+
+        <!-- CHAT -->
+
+        <section
+            id="chat"
+            class="tab-panel active"
+        >
+
+            <div class="hero-card">
+
+                <h2>
+                    What are you learning today?
+                </h2>
+
+                <p>
+                    Ask doubts, request examples,
+                    or ask EduGenie to teach a concept
+                    step by step.
+                </p>
+
+            </div>
+
+
+            <div
+                id="chatMessages"
+                class="chat-box"
+            ></div>
+
+
+            <form
+                id="chatForm"
+                class="composer"
+            >
+
+                <textarea
+                    id="chatInput"
+                    placeholder="Example: Explain neural networks in simple words..."
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send ✨
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- EXPLAIN -->
+
+        <section
+            id="explain"
+            class="tab-panel"
+        >
+
+            <div class="panel-card">
+
+                <h2>
+                    Explain a topic
+                </h2>
+
+                <p>
+                    Turn a difficult concept into
+                    a simple explanation with an analogy.
+                </p>
+
+                <input
+                    id="exTopic"
+                    placeholder="e.g. Photosynthesis"
+                >
+
+                <select id="exLevel">
+
+                    <option value="beginner">
+                        Beginner
+                    </option>
+
+                    <option value="intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+                <button id="exBtn">
+                    Explain with AI
+                </button>
+
+                <div
+                    id="exOut"
+                    class="output"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+
+        <section
+            id="quiz"
+            class="tab-panel"
+        >
+
+            <div class="panel-card">
+
+                <h2>
+                    Generate a quiz
+                </h2>
+
+                <input
+                    id="quizTopic"
+                    placeholder="Topic, e.g. Python basics"
+                >
+
+                <div class="row">
+
+                    <select id="quizCount">
+
+                        <option value="5">
+                            5 Questions
+                        </option>
+
+                        <option value="10">
+                            10 Questions
+                        </option>
+
+                        <option value="15">
+                            15 Questions
+                        </option>
+
+                    </select>
+
+
+                    <select id="quizDifficulty">
+
+                        <option value="easy">
+                            Easy
+                        </option>
+
+                        <option
+                            value="medium"
+                            selected
+                        >
+                            Medium
+                        </option>
+
+                        <option value="hard">
+                            Hard
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button id="quizBtn">
+                    Generate Quiz
+                </button>
+
+                <div
+                    id="quizOut"
+                    class="quiz-output"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section
+            id="summary"
+            class="tab-panel"
+        >
+
+            <div class="panel-card">
+
+                <h2>
+                    Smart study summarizer
+                </h2>
+
+                <p>
+                    Paste your study notes or upload
+                    a selectable-text PDF.
+                </p>
+
+                <textarea
+                    id="summaryText"
+                    class="large-input"
+                    placeholder="Paste your study notes here..."
+                ></textarea>
+
+                <div class="row">
+
+                    <button id="summaryBtn">
+                        Summarize Notes
+                    </button>
+
+                    <label class="upload">
+
+                        Upload PDF
+
+                        <input
+                            id="pdfFile"
+                            type="file"
+                            accept="application/pdf"
+                        >
+
+                    </label>
+
+                </div>
+
+                <div
+                    id="summaryOut"
+                    class="output"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEARNING PATH -->
+
+        <section
+            id="path"
+            class="tab-panel"
+        >
+
+            <div class="panel-card">
+
+                <h2>
+                    Personalized learning path
+                </h2>
+
+                <input
+                    id="pathGoal"
+                    placeholder="e.g. Learn Python for AI"
+                >
+
+                <div class="row">
+
+                    <select id="pathLevel">
+
+                        <option value="beginner">
+                            Beginner
+                        </option>
+
+                        <option value="intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+
+                    <select id="pathWeeks">
+
+                        <option value="2">
+                            2 Weeks
+                        </option>
+
+                        <option
+                            value="4"
+                            selected
+                        >
+                            4 Weeks
+                        </option>
+
+                        <option value="6">
+                            6 Weeks
+                        </option>
+
+                        <option value="8">
+                            8 Weeks
+                        </option>
+
+                        <option value="12">
+                            12 Weeks
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button id="pathBtn">
+                    Build My Roadmap
+                </button>
+
+                <div
+                    id="pathOut"
+                    class="output"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section
+            id="history"
+            class="tab-panel"
+        >
+
+            <div class="panel-card">
+
+                <h2>
+                    Study history
+                </h2>
+
+                <div
+                    id="historyOut"
+                    class="history-list"
+                >
+                    Click this tab to load
+                    your recent activity.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="/static/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,797 @@
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --ink: #172033;
+    --muted: #667085;
+    --primary: #6657e8;
+    --primary-dark: #5043c7;
+    --line: #e6e8ef;
+    --soft: #eeecff;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+
+    color: var(--ink);
+}
+
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+
+    border: 0;
+}
+
+
+/* -------------------------------------------------------
+   APPLICATION
+------------------------------------------------------- */
+
+
+.app-shell {
+    display: flex;
+
+    min-height: 100vh;
+}
+
+
+.sidebar {
+    width: 255px;
+
+    background: #15162a;
+
+    color: white;
+
+    padding: 24px 16px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.brand {
+    display: flex;
+
+    gap: 11px;
+
+    align-items: center;
+
+    margin: 0 8px 30px;
+}
+
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8d7cff,
+            #4b43bd
+        );
+
+    font-size: 21px;
+}
+
+
+.brand b {
+    display: block;
+
+    font-size: 18px;
+}
+
+
+.brand small {
+    color: #aeb1c6;
+
+    display: block;
+
+    margin-top: 3px;
+}
+
+
+.sidebar nav {
+    display: grid;
+
+    gap: 7px;
+}
+
+
+.nav-btn {
+    padding: 12px 13px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    background: transparent;
+
+    color: #c7c9d8;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: #2b2d48;
+
+    color: white;
+}
+
+
+.side-bottom {
+    margin-top: auto;
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+.user-pill {
+    padding: 10px 12px;
+
+    background: #22243b;
+
+    border-radius: 10px;
+
+    color: #dfe1ed;
+}
+
+
+.ghost-btn {
+    display: block;
+
+    text-align: center;
+
+    padding: 10px;
+
+    border: 1px solid #3a3c59;
+
+    border-radius: 10px;
+
+    color: white;
+
+    text-decoration: none;
+
+    background: transparent;
+}
+
+
+/* -------------------------------------------------------
+   MAIN
+------------------------------------------------------- */
+
+
+.main {
+    flex: 1;
+
+    padding: 30px 5%;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    width: 100%;
+}
+
+
+.topbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 22px;
+}
+
+
+.eyebrow {
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+
+.topbar h1 {
+    margin: 6px 0 0;
+
+    font-size: 30px;
+}
+
+
+.status {
+    font-size: 13px;
+
+    color: #318a61;
+
+    background: #e9f8f0;
+
+    padding: 8px 11px;
+
+    border-radius: 99px;
+}
+
+
+/* -------------------------------------------------------
+   TABS
+------------------------------------------------------- */
+
+
+.tab-panel {
+    display: none;
+}
+
+
+.tab-panel.active {
+    display: block;
+}
+
+
+/* -------------------------------------------------------
+   CARDS
+------------------------------------------------------- */
+
+
+.hero-card,
+.panel-card {
+    background: var(--card);
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(30, 35, 70, 0.05);
+}
+
+
+.hero-card {
+    background:
+        linear-gradient(
+            135deg,
+            #f0edff,
+            #ffffff
+        );
+
+    margin-bottom: 16px;
+}
+
+
+.hero-card h2,
+.panel-card h2 {
+    margin-top: 0;
+}
+
+
+.hero-card p,
+.panel-card p {
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+/* -------------------------------------------------------
+   CHAT
+------------------------------------------------------- */
+
+
+.chat-box {
+    min-height: 300px;
+
+    max-height: 55vh;
+
+    overflow-y: auto;
+
+    display: grid;
+
+    gap: 12px;
+
+    padding: 4px;
+}
+
+
+.bubble {
+    max-width: 82%;
+
+    padding: 13px 15px;
+
+    border-radius: 15px;
+
+    white-space: pre-wrap;
+
+    line-height: 1.55;
+}
+
+
+.bubble.user {
+    justify-self: end;
+
+    background: #e9e6ff;
+}
+
+
+.bubble.ai {
+    justify-self: start;
+
+    background: white;
+
+    border: 1px solid var(--line);
+}
+
+
+.composer {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+
+.composer textarea {
+    flex: 1;
+
+    min-height: 65px;
+}
+
+
+/* -------------------------------------------------------
+   FORM ELEMENTS
+------------------------------------------------------- */
+
+
+textarea,
+input,
+select {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: var(--ink);
+
+    margin: 8px 0 12px;
+
+    outline: none;
+}
+
+
+textarea:focus,
+input:focus,
+select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(102, 87, 232, 0.1);
+}
+
+
+textarea {
+    resize: vertical;
+}
+
+
+.large-input {
+    min-height: 230px;
+}
+
+
+/* -------------------------------------------------------
+   BUTTONS
+------------------------------------------------------- */
+
+
+.composer button,
+.panel-card > button,
+.row button {
+    background: var(--primary);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+
+.composer button:hover,
+.panel-card > button:hover,
+.row button:hover {
+    background: var(--primary-dark);
+}
+
+
+.composer button:active,
+.panel-card > button:active,
+.row button:active {
+    transform: scale(0.98);
+}
+
+
+/* -------------------------------------------------------
+   ROW
+------------------------------------------------------- */
+
+
+.row {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+/* -------------------------------------------------------
+   OUTPUT
+------------------------------------------------------- */
+
+
+.output {
+    margin-top: 18px;
+
+    padding: 18px;
+
+    background: #fafaff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 12px;
+
+    white-space: pre-wrap;
+
+    line-height: 1.6;
+
+    min-height: 40px;
+}
+
+
+/* -------------------------------------------------------
+   QUIZ
+------------------------------------------------------- */
+
+
+.quiz-output {
+    display: grid;
+
+    gap: 14px;
+
+    margin-top: 18px;
+}
+
+
+.q-card {
+    padding: 16px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 12px;
+
+    background: white;
+
+    transition:
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+
+.q-card:hover {
+    border-color: #cfcaff;
+
+    box-shadow:
+        0 5px 18px
+        rgba(30, 35, 70, 0.05);
+}
+
+
+.q-card label {
+    display: block;
+
+    padding: 7px;
+
+    border-radius: 8px;
+}
+
+
+.q-card label:hover {
+    background: #f5f3ff;
+}
+
+
+.quiz-answer {
+    margin-top: 12px;
+}
+
+
+/* -------------------------------------------------------
+   UPLOAD
+------------------------------------------------------- */
+
+
+.upload {
+    display: inline-block;
+
+    padding: 12px 18px;
+
+    background: #eee;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+.upload input {
+    display: none;
+}
+
+
+/* -------------------------------------------------------
+   HISTORY
+------------------------------------------------------- */
+
+
+.history-item {
+    padding: 14px;
+
+    border-bottom: 1px solid var(--line);
+
+    line-height: 1.5;
+}
+
+
+.history-item b {
+    display: block;
+
+    text-transform: capitalize;
+
+    margin-bottom: 3px;
+}
+
+
+.history-item small {
+    color: var(--muted);
+
+    display: block;
+
+    margin-bottom: 5px;
+}
+
+
+/* -------------------------------------------------------
+   NOTICE
+------------------------------------------------------- */
+
+
+.notice {
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    background: #fff0f0;
+
+    color: #a33131;
+
+    margin-bottom: 15px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* -------------------------------------------------------
+   LOGIN
+------------------------------------------------------- */
+
+
+.login-page {
+    min-height: 100vh;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #15162a,
+            #4f46a9
+        );
+}
+
+
+.login-card {
+    width: min(
+        420px,
+        92vw
+    );
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.centered {
+    justify-content: center;
+
+    margin-bottom: 22px;
+}
+
+
+.login-card h1 {
+    margin-bottom: 5px;
+}
+
+
+.login-card p {
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+.login-card form button {
+    width: 100%;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    margin-top: 5px;
+}
+
+
+.link-btn {
+    background: none;
+
+    color: var(--primary);
+
+    padding: 10px 5px;
+
+    margin-top: 8px;
+}
+
+
+.error {
+    color: #b42318;
+
+    margin-top: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* -------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------- */
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 70px;
+
+        padding: 18px 8px;
+    }
+
+
+    .sidebar .brand div,
+    .sidebar .nav-btn {
+        font-size: 0;
+    }
+
+
+    .sidebar .brand {
+        margin: 0 auto 25px;
+    }
+
+
+    .nav-btn {
+        height: 44px;
+
+        text-align: center;
+    }
+
+
+    .side-bottom {
+        display: none;
+    }
+
+
+    .main {
+        padding: 20px;
+    }
+
+
+    .topbar {
+        align-items: start;
+    }
+
+
+    .status {
+        display: none;
+    }
+
+
+    .composer {
+        flex-direction: column;
+    }
+
+
+    .row {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+}
